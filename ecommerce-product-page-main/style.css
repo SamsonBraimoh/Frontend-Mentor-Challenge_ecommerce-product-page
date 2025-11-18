@@ -1,16 +1,23 @@
 html, body{
     margin: 0;
     padding: 0;
+    height: 100%;
+    font-family: 'Kumbh Sans', sans-serif;
 }
 .main-content{
     width: 80%;
     justify-self: center;
 }
+
+/* HEADER */
+
 header{
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #b6bcc8;
+    position: sticky;
+    top: 0;
 }
 .nav{
     display: flex;
@@ -37,6 +44,67 @@ header{
     gap: 50px;
 }
 .logo{
-    font-family: 'Kumbh Sans', sans-serif;
+    cursor: pointer;
+}
+
+/* PRODUCT SECTION */
+
+.product-container{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 10%;
+}
+.product{
+    width: 35%;
+}
+.product-image{
+    width: 100%;
+    border-radius: 30px;
+}
+.product-views{
+    margin-top: 30px;
+    display: flex;
+    gap: 5%; 
+    width: 100%;
+}
+.view{
+    border-radius: 10px;
+    width: 21.25%;
+    cursor: pointer;
+}
+.product-details{
+    width: 30%;
+}
+.discount{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.discounted{
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    background-color: #000;
+    color: #ffff;
+}
+.original-price{
+    text-decoration: line-through;
+}
+.cart-count{
+    display: flex;
+    background-color: #f7f8fd;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    height: 40px;
+    margin-top: 30px;
+    padding: 0 10px 0 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.count{
+    color: #ff7d1a;
     cursor: pointer;
 }
