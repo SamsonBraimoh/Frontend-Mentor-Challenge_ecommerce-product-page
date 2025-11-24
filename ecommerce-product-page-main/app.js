@@ -11,7 +11,17 @@ const modal = document.getElementById("popUp");
 const closePopUp = document.getElementById("close");
 const next = document.getElementById("next");
 const previous = document.getElementById("previous");
+const increase = document.getElementById("addItems");
+const reduce = document.getElementById("subtractItems");
+const quantityOfItems = document.getElementById("cartItemCount");
+const discount = document.getElementById("discount");
+const realPrice = document.getElementById("actualPrice");
+const discountedPrice = document.getElementById("discountedPrice");
+const cart = document.getElementById("itemsInCart");
+const addButton = document.getElementById("addCart")
 let currentIndex = 0;
+let count = 0;
+
 
 
 
@@ -37,8 +47,8 @@ let currentIndex = 0;
             img.addEventListener("click", ()=>{
             
                 popUpDisplayed.setAttribute("src", `images/image-product-${productViews[index]}.jpg`);
-
-                activePopUpSelected(img, index);
+                
+                activePopUpSelector(img, index);
             })
     });
 
@@ -55,14 +65,17 @@ let currentIndex = 0;
         popUpDisplayed.src = show.src
         modal.classList.remove("hidden");
 
-        const index = Array.from(popUpSelectedImage).findIndex( );
-        console.log(index)
+        for (let i = 0; i < productViews.length; i++) {
+            if (show.src.includes(`image-product-${productViews[i]}.jpg`)) {
+              activePopUpSelector(popUpSelectedImage[i], i);
+              break; 
+            }
+          }
        
-       
-            activePopUpSelector(popUpSelectedImage[index], index);
        
         console.log(popUp)
-    })
+    });
+      
 
     closePopUp.addEventListener("click", () => {modal.classList.add("hidden")});
 
@@ -78,7 +91,44 @@ let currentIndex = 0;
         activePopUpSelector(popUpSelectedImage[currentIndex], currentIndex);
     });
 
+   const  updateItemsQuantity = () => {
+        increase.addEventListener("click", () => {
+             count++
+             console.log(count);
+             updateItems()
+        });
+        reduce.addEventListener("click", () => {
+             if(count > 0){count--}
+             updateItems()
+             console.log(count);
+            });  
+        }
+        updateItemsQuantity();
+        
+    const updateItems = () =>{
+        quantityOfItems.innerHTML = count;
+        
+        addButton.addEventListener("click", ()=>{
+            cart.classList.remove("hidden")
+            cart.innerHTML = count;
+        })
+        
+    }
 
+   const sellingPrice  = () =>{
+        const price = Number(realPrice.textContent.replace(/[^\d.]/g, ''));
+        const discountPercentage = Number(discount.textContent.replace(/[^\d.]/g, ''));
+        
+        const discountAmount = (discountPercentage / 100) * price;
+        discountedPrice.innerHTML = `$${price - discountAmount}.00`;
+        
+    };
+    sellingPrice()
+
+   
+
+    
+ 
 
 
 
