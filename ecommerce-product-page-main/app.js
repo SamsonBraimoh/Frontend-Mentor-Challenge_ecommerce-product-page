@@ -18,7 +18,14 @@ const discount = document.getElementById("discount");
 const realPrice = document.getElementById("actualPrice");
 const discountedPrice = document.getElementById("discountedPrice");
 const cart = document.getElementById("itemsInCart");
-const addButton = document.getElementById("addCart")
+const addButton = document.getElementById("addCart");
+const pricePerItem = document.getElementById("pricePerItem");
+const totalAmount = document.getElementById("totalAmount");
+const itemsQuantity = document.getElementById("itemsQuantity");
+const cartSummary = document.getElementById("cart");
+const cartOverview = document.getElementById("cartOverview");
+const cartOverviewMain1 = document.getElementById("cartOverviewMain1");
+const cartOverviewMain2 = document. getElementById("cartOverviewMain2");
 let currentIndex = 0;
 let count = 0;
 
@@ -109,21 +116,47 @@ let count = 0;
         quantityOfItems.innerHTML = count;
         
         addButton.addEventListener("click", ()=>{
-            cart.classList.remove("hidden")
-            cart.innerHTML = count;
-        })
-        
-    }
+            if (count > 0){
+                cart.classList.remove("hidden")
+                cart.innerHTML = count;
+    
+                cartSummary.addEventListener("click", (e)=>{
+                        e.stopPropagation();
+                        cartOverview.classList.remove("hidden");
+                        cartOverviewMain2.classList.remove("hidden"); 
+                        cartOverviewMain1.classList.add("hidden")                  
+                });
+            };
+        });
 
-   const sellingPrice  = () =>{
-        const price = Number(realPrice.textContent.replace(/[^\d.]/g, ''));
-        const discountPercentage = Number(discount.textContent.replace(/[^\d.]/g, ''));
-        
-        const discountAmount = (discountPercentage / 100) * price;
-        discountedPrice.innerHTML = `$${price - discountAmount}.00`;
-        
-    };
-    sellingPrice()
+        cartSummary.addEventListener("click", (e)=>{
+            e.stopPropagation();
+            cartOverview.classList.remove("hidden")
+            cartOverviewMain1.classList.remove("hidden");
+        })
+
+        const sellingPrice  = () =>{
+            const price = Number(realPrice.textContent.replace(/[^\d.]/g, ''));
+            const discountPercentage = Number(discount.textContent.replace(/[^\d.]/g, ''));
+            
+            const discountAmount = (discountPercentage / 100) * price;
+            const actualAmount = `$${price - discountAmount}.00`;
+           
+            discountedPrice.innerHTML = actualAmount;
+            pricePerItem.innerHTML = actualAmount;
+            itemsQuantity.innerHTML = count;
+            totalAmount.innerHTML = `$${Number(actualAmount.replace(/[^\d.]/g, '')) * count}.00`
+        };
+        sellingPrice();   
+    
+    };   
+    updateItems();
+   
+    document.addEventListener("click", ()=>{
+            cartOverview.classList.add("hidden");
+    });
+  
+  
 
    
 

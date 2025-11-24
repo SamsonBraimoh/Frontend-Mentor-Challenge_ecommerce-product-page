@@ -266,9 +266,9 @@ header{
 .cart-overview-main{
     width: 100%;
     height: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 25%;
     font-weight: bold;
     color: #68707d;
 
