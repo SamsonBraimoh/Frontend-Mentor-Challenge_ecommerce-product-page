@@ -26,6 +26,12 @@ const cartSummary = document.getElementById("cart");
 const cartOverview = document.getElementById("cartOverview");
 const cartOverviewMain1 = document.getElementById("cartOverviewMain1");
 const cartOverviewMain2 = document. getElementById("cartOverviewMain2");
+const nextMobile = document.getElementById("next-mobile");
+const previousMobile = document.getElementById("previous-mobile");
+const mobileMenu = document.getElementsByClassName("mobile-menu")[0];
+const mobileLinks = document.getElementsByClassName("mobile-links")[0];
+const nav = document.getElementById("mobileNav");
+const closeMobileMenu = document.getElementById("closeMobileMenu");
 let currentIndex = 0;
 let count = 0;
 
@@ -156,6 +162,29 @@ let count = 0;
             cartOverview.classList.add("hidden");
     });
   
+
+    nextMobile.addEventListener("click", ()=>{
+        currentIndex = (currentIndex + 1) % (productViews.length);
+        show.src = `images/image-product-${productViews[currentIndex]}.jpg`;  
+    })
+    previousMobile.addEventListener("click", ()=>{
+        currentIndex = (currentIndex - 1 + productViews.length) % (productViews.length)
+        show.src = `images/image-product-${productViews[currentIndex]}.jpg`;  
+    })
+
+    nav.addEventListener("click", ()=>{
+        mobileMenu.classList.remove("hidden");
+        mobileMenu.style.height = document.body.scrollHeight + "px";
+        // document.body.style.overflow = "hidden";
+
+
+    })
+    closeMobileMenu.addEventListener("click", ()=>{
+        mobileMenu.classList.add("hidden");
+        // document.body.style.overflow = "auto";
+
+    })
+
   
 
    
