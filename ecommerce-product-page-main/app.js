@@ -130,8 +130,16 @@ let count = 0;
                         e.stopPropagation();
                         cartOverview.classList.remove("hidden");
                         cartOverviewMain2.classList.remove("hidden"); 
-                        cartOverviewMain1.classList.add("hidden")                  
+                        cartOverviewMain1.classList.add("hidden")
+                              
                 });
+            } else { 
+                // cartSummary.addEventListener("click", (e)=>{
+                //     e.stopPropagation();
+                //     cartOverview.classList.remove("hidden")
+                //     cartOverviewMain1.classList.remove("hidden");
+                //     cartOverviewMain2.classList.add("hidden")
+                // })
             };
         });
 
@@ -139,6 +147,8 @@ let count = 0;
             e.stopPropagation();
             cartOverview.classList.remove("hidden")
             cartOverviewMain1.classList.remove("hidden");
+            cartOverviewMain2.classList.add("hidden");
+            // cart.classList.add("hidden")
         })
 
         const sellingPrice  = () =>{
